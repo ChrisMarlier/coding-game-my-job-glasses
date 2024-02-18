@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import useRickAndMortyApi from "../../hooks/useRickAndMortyApi";
 import { CardCharacter } from "./components";
-import { CardContainer } from "./styles";
+import { ButtonContainer, CardContainer } from "./styles";
+import { Button } from "../../designSystem";
 
 const Home: React.FC = () => {
   const { getCharacters } = useRickAndMortyApi();
@@ -32,7 +33,16 @@ const Home: React.FC = () => {
         ))}
       </CardContainer>
       {pagination && page + 1 <= pagination.pages && (
-        <button onClick={() => loadMore()}>LoadMore</button>
+        <ButtonContainer>
+          <Button
+            color="lightBlue"
+            size="large"
+            margin="10px"
+            onClick={() => loadMore()}
+          >
+            Load more
+          </Button>
+        </ButtonContainer>
       )}
     </div>
   );
