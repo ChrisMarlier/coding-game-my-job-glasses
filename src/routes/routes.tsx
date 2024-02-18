@@ -1,6 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
-import Home from '../pages/home';
-import ShowCharacter from '../pages/showCharacter';
+import { Routes, Route } from "react-router-dom";
+import Home from "../pages/home";
+import ShowCharacter from "../pages/showCharacter";
 
 export default function AppRoutes() {
   return (
@@ -9,4 +9,4 @@ export default function AppRoutes() {
       <Route path="/show" element={<ShowCharacter />} />
     </Routes>
   );
-};
+}
