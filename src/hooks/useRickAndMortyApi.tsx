@@ -12,9 +12,16 @@ const useRickAndMortyApi = () => {
       };
     };
   };
-  const getCharacters = async () =>
+
+  type GetCharactersParams = {
+    page?: number;
+  };
+
+  const getCharacters = async ({ page = 1 }: GetCharactersParams) =>
     await axios
-      .get("https://rickandmortyapi.com/api/character")
+      .get("https://rickandmortyapi.com/api/character", {
+        params: { page },
+      })
       .then((res: getCharactersResponse) => res.data);
 
   return { getCharacters };
