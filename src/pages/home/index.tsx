@@ -9,21 +9,20 @@ const Home: React.FC = () => {
 
   const [characters, setCharacters] = useState<Character[]>([]);
   const [pagination, setPagination] = useState<Pagination>();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
+  const [filters, setFilters] = useState({});
 
-  useEffect(() => {
+  const loadCharacters = () => {
     getCharacters({ page }).then((res) => {
-      setPagination(res.info);
-      setCharacters(res.results);
-    });
-  }, []);
-
-  const loadMore = async () => {
-    getCharacters({ page: page + 1 }).then((res) => {
       setPage(page + 1);
+      setPagination(res.info);
       setCharacters([...characters, ...res.results]);
     });
   };
+
+  useEffect(() => {
+    loadCharacters();
+  }, []);
 
   return (
     <div>
@@ -32,13 +31,13 @@ const Home: React.FC = () => {
           <CardCharacter key={character.id} character={character} />
         ))}
       </CardContainer>
-      {pagination && page + 1 <= pagination.pages && (
+      {pagination && page <= pagination.pages && (
         <ButtonContainer>
           <Button
             color="lightBlue"
             size="large"
             margin="10px"
-            onClick={() => loadMore()}
+            onClick={() => loadCharacters()}
           >
             Load more
           </Button>
