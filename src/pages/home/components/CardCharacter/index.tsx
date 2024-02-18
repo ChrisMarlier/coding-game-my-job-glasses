@@ -1,5 +1,11 @@
-import { CardContainer, LeftContainer, RightContainer, Image } from "./styles";
-import { Text } from "../../../../designSystem";
+import {
+  CardContainer,
+  LeftContainer,
+  StatusIndicatorContainer,
+  RightContainer,
+  Image,
+} from "./styles";
+import { StatusIndicator, Text } from "../../../../designSystem";
 
 const CardCharacter = ({ character }: { character: Character }) => {
   return (
@@ -13,6 +19,9 @@ const CardCharacter = ({ character }: { character: Character }) => {
         </Text>
         <Text mt={10}>Last seen in:</Text>
         <Text mt={5}>{character.location.name}</Text>
+        <StatusIndicatorContainer>
+          <StatusIndicator variant={character.status} text={character.status} />
+        </StatusIndicatorContainer>
       </RightContainer>
     </CardContainer>
   );

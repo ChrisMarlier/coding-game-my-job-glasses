@@ -4,7 +4,7 @@ type Character = {
   image: string;
   name: string;
   species: string;
-  status: string;
+  status: "Alive" | "Dead" | "unknown";
   type: string;
   location: {
     name: string;
