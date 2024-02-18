@@ -6,4 +6,7 @@ type Character = {
   species: string;
   status: string;
   type: string;
+  location: {
+    name: string;
+  };
 };
