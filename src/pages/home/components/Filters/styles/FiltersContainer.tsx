@@ -5,6 +5,7 @@ const FiltersContainer = styled.div`
   width: 80%;
   margin: auto;
   text-align: center;
+  padding-top: 10px;
 `;
 
 export default FiltersContainer;

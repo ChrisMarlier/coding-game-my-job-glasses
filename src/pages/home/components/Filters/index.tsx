@@ -34,61 +34,63 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
   }
 
   return (
-    <FiltersContainer>
-      <Text mt={50} size="1.7rem" bold>
-        Filter characters
-      </Text>
-      <FormContainer>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            name="name"
-            control={control}
-            render={({ field }) => <InputText field={field} text="Name" />}
-          />
-          <DropdownContainer>
+    <div style={{ paddingTop: "0px", width: "100%", backgroundColor: "white" }}>
+      <FiltersContainer>
+        <Text mt={20} size="1.7rem" bold>
+          Filter characters
+        </Text>
+        <FormContainer>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Controller
-              name="status"
+              name="name"
               control={control}
-              defaultValue={null}
-              render={({ field }) => (
-                <Dropdown
-                  field={field}
-                  options={formatOptions(status)}
-                  text="Status"
-                />
-              )}
+              render={({ field }) => <InputText field={field} text="Name" />}
             />
-            <Controller
-              name="specie"
-              control={control}
-              defaultValue={null}
-              render={({ field }) => (
-                <Dropdown
-                  field={field}
-                  options={formatOptions(species)}
-                  text="Species"
-                />
-              )}
-            />
-            <Controller
-              name="gender"
-              control={control}
-              defaultValue={null}
-              render={({ field }) => (
-                <Dropdown
-                  field={field}
-                  options={formatOptions(genders)}
-                  text="Gender"
-                />
-              )}
-            />
-          </DropdownContainer>
-          <Button color="lightBlue" size="medium" margin="20px" type="submit">
-            Search
-          </Button>
-        </form>
-      </FormContainer>
-    </FiltersContainer>
+            <DropdownContainer>
+              <Controller
+                name="status"
+                control={control}
+                defaultValue={null}
+                render={({ field }) => (
+                  <Dropdown
+                    field={field}
+                    options={formatOptions(status)}
+                    text="Status"
+                  />
+                )}
+              />
+              <Controller
+                name="specie"
+                control={control}
+                defaultValue={null}
+                render={({ field }) => (
+                  <Dropdown
+                    field={field}
+                    options={formatOptions(species)}
+                    text="Species"
+                  />
+                )}
+              />
+              <Controller
+                name="gender"
+                control={control}
+                defaultValue={null}
+                render={({ field }) => (
+                  <Dropdown
+                    field={field}
+                    options={formatOptions(genders)}
+                    text="Gender"
+                  />
+                )}
+              />
+            </DropdownContainer>
+            <Button color="lightBlue" size="large" margin="20px" type="submit">
+              Search
+            </Button>
+          </form>
+        </FormContainer>
+      </FiltersContainer>
+    </div>
   );
 };
 
