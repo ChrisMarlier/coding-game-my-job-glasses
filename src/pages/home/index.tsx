@@ -12,8 +12,8 @@ const Home: React.FC = () => {
   const [page, setPage] = useState(0);
   const [filters, setFilters] = useState({});
 
-  const loadCharacters = () => {
-    getCharacters({ page }).then((res) => {
+  const loadNextCharacters = () => {
+    getCharacters({ page: page + 1, filters }).then((res) => {
       setPage(page + 1);
       setPagination(res.info);
       setCharacters([...characters, ...res.results]);
@@ -21,24 +21,39 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    loadCharacters();
+    loadNextCharacters();
   }, []);
+
+  const loadFromSearch = (data: FormFilters) => {
+    const newFilters: Filters = {
+      name: data.name,
+      status: data.status ? data.status.value : null,
+    };
+
+    setPage(1);
+    setFilters(newFilters);
+
+    getCharacters({ page: 1, filters: newFilters }).then((res) => {
+      setPagination(res.info);
+      setCharacters(res.results);
+    });
+  };
 
   return (
     <div>
-      <Filters />
+      <Filters loadNewData={loadFromSearch} />
       <CardContainer>
         {characters.map((character) => (
           <CardCharacter key={character.id} character={character} />
         ))}
       </CardContainer>
-      {pagination && page <= pagination.pages && (
+      {pagination && page < pagination.pages && (
         <ButtonContainer>
           <Button
             color="lightBlue"
             size="large"
             margin="10px"
-            onClick={() => loadCharacters()}
+            onClick={() => loadNextCharacters()}
           >
             Load more
           </Button>

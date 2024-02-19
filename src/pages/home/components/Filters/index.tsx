@@ -1,16 +1,19 @@
-import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { InputText, Text } from "../../../../designSystem";
+import { Dropdown, InputText, Text } from "../../../../designSystem";
 import { FiltersContainer, FormContainer } from "./styles";
 
-const Filters = () => {
-  const [text, setText] = useState("");
+const Filters = ({ loadNewData }: { loadNewData: Function }) => {
+  const { control, handleSubmit } = useForm<FormFilters>();
 
-  const { control, handleSubmit } = useForm<any>();
-
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: FormFilters) => {
+    loadNewData(data);
   };
+
+  const statusOption = [
+    { value: "alive", label: "Alive" },
+    { value: "dead", label: "Dead" },
+    { value: "unknown", label: "Unknown" },
+  ];
 
   return (
     <FiltersContainer>
@@ -22,10 +25,18 @@ const Filters = () => {
           <Controller
             name="name"
             control={control}
+            render={({ field }) => <InputText field={field} text="Name" />}
+          />
+
+          <Controller
+            name="status"
+            control={control}
+            defaultValue={null}
             render={({ field }) => (
-              <InputText field={field} value={text} onChange={setText} />
+              <Dropdown field={field} options={statusOption} text="Status" />
             )}
           />
+          <button type="submit">Submit</button>
         </form>
       </FormContainer>
     </FiltersContainer>

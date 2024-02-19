@@ -15,13 +15,7 @@ const useRickAndMortyApi = () => {
 
   type GetCharactersParams = {
     page?: number;
-    filters?: {
-      name: string;
-      status: "alive" | "dead" | "unknown";
-      gender: "female" | "male" | "genderless" | "unknown";
-      species: string;
-      type: string;
-    };
+    filters?: Filters;
   };
 
   const getCharacters = async ({ page = 1, filters }: GetCharactersParams) =>

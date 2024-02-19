@@ -6,8 +6,7 @@ import styled from "styled-components";
 type InputTextProps = {
   color?: "lightBlue";
   field: FieldValues;
-  value: string;
-  onChange: (newValue: string) => void;
+  text: string;
 };
 
 const Container = styled.div`
@@ -17,13 +16,8 @@ const Container = styled.div`
 const InputText: React.FC<InputTextProps> = ({
   color = "lightBlue",
   field,
-  value,
-  onChange,
+  text,
 }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
-  };
-
   const colorFormater = {
     lightBlue: "#237fb7",
   };
@@ -38,15 +32,9 @@ const InputText: React.FC<InputTextProps> = ({
   return (
     <Container>
       <Text mt={10} mb={3} size="1rem" bold>
-        Name
+        {text}
       </Text>
-      <input
-        type="text"
-        style={inputStyle}
-        value={value}
-        onChange={handleChange}
-        {...field}
-      />
+      <input type="text" style={inputStyle} {...field} />
     </Container>
   );
 };
