@@ -6,6 +6,7 @@ interface ButtonProps {
   size?: "small" | "medium" | "large";
   margin?: string;
   onClick?: () => void;
+  type?: "submit" | "button";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   size = "medium",
   margin = "0",
   onClick,
+  type = "button",
 }) => {
   const sizeFormater = {
     small: "12px",
@@ -38,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button style={buttonStyles} onClick={onClick}>
+    <button type={type} style={buttonStyles} onClick={onClick}>
       {children}
     </button>
   );

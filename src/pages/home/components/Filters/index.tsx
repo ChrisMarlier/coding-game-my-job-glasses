@@ -1,6 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
-import { Dropdown, InputText, Text } from "../../../../designSystem";
-import { FiltersContainer, FormContainer } from "./styles";
+import { Button, Dropdown, InputText, Text } from "../../../../designSystem";
+import { DropdownContainer, FiltersContainer, FormContainer } from "./styles";
 
 const Filters = ({ loadNewData }: { loadNewData: Function }) => {
   const { control, handleSubmit } = useForm<FormFilters>();
@@ -25,7 +25,7 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
     "Planet",
   ];
 
-  let genders = ["female", "male", "genderless", "unknown"];
+  let genders = ["Female", "Male", "Genderless", "Unknown"];
 
   function formatOptions(options: string[]) {
     return options.map((option) => {
@@ -35,8 +35,8 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
 
   return (
     <FiltersContainer>
-      <Text mt={50} size="1.4rem" bold>
-        Characters
+      <Text mt={50} size="1.7rem" bold>
+        Filter characters
       </Text>
       <FormContainer>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -45,44 +45,47 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
             control={control}
             render={({ field }) => <InputText field={field} text="Name" />}
           />
-
-          <Controller
-            name="status"
-            control={control}
-            defaultValue={null}
-            render={({ field }) => (
-              <Dropdown
-                field={field}
-                options={formatOptions(status)}
-                text="Status"
-              />
-            )}
-          />
-          <Controller
-            name="specie"
-            control={control}
-            defaultValue={null}
-            render={({ field }) => (
-              <Dropdown
-                field={field}
-                options={formatOptions(species)}
-                text="Species"
-              />
-            )}
-          />
-          <Controller
-            name="gender"
-            control={control}
-            defaultValue={null}
-            render={({ field }) => (
-              <Dropdown
-                field={field}
-                options={formatOptions(genders)}
-                text="Gender"
-              />
-            )}
-          />
-          <button type="submit">Submit</button>
+          <DropdownContainer>
+            <Controller
+              name="status"
+              control={control}
+              defaultValue={null}
+              render={({ field }) => (
+                <Dropdown
+                  field={field}
+                  options={formatOptions(status)}
+                  text="Status"
+                />
+              )}
+            />
+            <Controller
+              name="specie"
+              control={control}
+              defaultValue={null}
+              render={({ field }) => (
+                <Dropdown
+                  field={field}
+                  options={formatOptions(species)}
+                  text="Species"
+                />
+              )}
+            />
+            <Controller
+              name="gender"
+              control={control}
+              defaultValue={null}
+              render={({ field }) => (
+                <Dropdown
+                  field={field}
+                  options={formatOptions(genders)}
+                  text="Gender"
+                />
+              )}
+            />
+          </DropdownContainer>
+          <Button color="lightBlue" size="medium" margin="20px" type="submit">
+            Search
+          </Button>
         </form>
       </FormContainer>
     </FiltersContainer>
