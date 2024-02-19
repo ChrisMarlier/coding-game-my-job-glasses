@@ -13,7 +13,10 @@ const CardCharacter = ({ character }: { character: Character }) => {
   const navigate = useNavigate();
 
   return (
-    <CardContainer onClick={() => navigate(`/character/${character.id}`)}>
+    <CardContainer
+      data-cy={character.id}
+      onClick={() => navigate(`/character/${character.id}`)}
+    >
       <LeftContainer>
         <Image src={character.image} />
       </LeftContainer>

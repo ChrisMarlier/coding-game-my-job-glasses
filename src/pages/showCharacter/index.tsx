@@ -29,6 +29,7 @@ const ShowCharacter: React.FC = () => {
             style={{ marginTop: "50px" }}
             src={character.image}
             alt="Character"
+            data-cy="image"
           />
           <Text mt={50} size="1.7rem" bold color="white">
             {character.name}
