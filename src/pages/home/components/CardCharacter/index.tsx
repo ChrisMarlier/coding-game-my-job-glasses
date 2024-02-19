@@ -14,11 +14,15 @@ const CardCharacter = ({ character }: { character: Character }) => {
         <Image src={character.image} />
       </LeftContainer>
       <RightContainer>
-        <Text bold size="1.3rem">
+        <Text color="white" bold size="1.3rem">
           {character.name}{" "}
         </Text>
-        <Text mt={10}>Last seen in:</Text>
-        <Text mt={5}>{character.location.name}</Text>
+        <Text color="white" mt={10}>
+          Last seen in:
+        </Text>
+        <Text color="white" mt={5}>
+          {character.location.name}
+        </Text>
         <StatusIndicatorContainer>
           <StatusIndicator variant={character.status} text={character.status} />
         </StatusIndicatorContainer>
