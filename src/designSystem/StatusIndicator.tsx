@@ -6,15 +6,19 @@ const Container = styled.div`
   padding: 5px;
   text-align: center;
   border-radius: 20px;
-  float: right;
 `;
 
 interface Props {
+  float?: "left" | "right" | "none";
   variant: "Alive" | "Dead" | "unknown";
   text: string;
 }
 
-const StatusIndicator: React.FC<Props> = ({ text, variant }) => {
+const StatusIndicator: React.FC<Props> = ({
+  float = "right",
+  text,
+  variant,
+}) => {
   const backgroundFormater = {
     Alive: "#4caf50",
     Dead: "#f44336",
@@ -22,7 +26,9 @@ const StatusIndicator: React.FC<Props> = ({ text, variant }) => {
   };
 
   return (
-    <Container style={{ backgroundColor: backgroundFormater[variant] }}>
+    <Container
+      style={{ backgroundColor: backgroundFormater[variant], float: float }}
+    >
       <Text size="0.9rem" bold>
         {text}
       </Text>
