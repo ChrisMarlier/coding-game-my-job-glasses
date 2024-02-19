@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useRickAndMortyApi from "../../hooks/useRickAndMortyApi";
 import { CardCharacter, Filters, Header } from "./components";
 import { ButtonContainer, CardContainer } from "./styles";
-import { Button } from "../../designSystem";
+import { Button, Text } from "../../designSystem";
 
 const Home: React.FC = () => {
   const { getCharacters } = useRickAndMortyApi();
@@ -46,6 +46,11 @@ const Home: React.FC = () => {
       <Header />
       <Filters loadNewData={loadFromSearch} />
       <CardContainer>
+        {characters.length === 0 && (
+          <Text color="white" mt={10} mb={3} size="1.5rem" bold>
+            Nothing to show :-/
+          </Text>
+        )}
         {characters.map((character) => (
           <CardCharacter key={character.id} character={character} />
         ))}

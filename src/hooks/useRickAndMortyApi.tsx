@@ -26,7 +26,10 @@ const useRickAndMortyApi = () => {
           page,
         },
       })
-      .then((res: getCharactersResponse) => res.data);
+      .then((res: getCharactersResponse) => res.data)
+      .catch(() => {
+        return { info: { pages: 0 }, results: [] };
+      });
 
   const getCharacter = async (id: string) =>
     await axios
