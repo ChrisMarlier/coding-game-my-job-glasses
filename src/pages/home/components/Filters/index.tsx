@@ -9,11 +9,29 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
     loadNewData(data);
   };
 
-  const statusOption = [
-    { value: "alive", label: "Alive" },
-    { value: "dead", label: "Dead" },
-    { value: "unknown", label: "Unknown" },
+  const status = ["Alive", "Dead", "Unknown"];
+
+  let species = [
+    "Human",
+    "Alien",
+    "Humanoid",
+    "Poopybutthole",
+    "Mythological",
+    "Unknown",
+    "Animal",
+    "Disease",
+    "Robot",
+    "Cronenberg",
+    "Planet",
   ];
+
+  let genders = ["female", "male", "genderless", "unknown"];
+
+  function formatOptions(options: string[]) {
+    return options.map((option) => {
+      return { value: option, label: option };
+    });
+  }
 
   return (
     <FiltersContainer>
@@ -33,7 +51,35 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
             control={control}
             defaultValue={null}
             render={({ field }) => (
-              <Dropdown field={field} options={statusOption} text="Status" />
+              <Dropdown
+                field={field}
+                options={formatOptions(status)}
+                text="Status"
+              />
+            )}
+          />
+          <Controller
+            name="specie"
+            control={control}
+            defaultValue={null}
+            render={({ field }) => (
+              <Dropdown
+                field={field}
+                options={formatOptions(species)}
+                text="Species"
+              />
+            )}
+          />
+          <Controller
+            name="gender"
+            control={control}
+            defaultValue={null}
+            render={({ field }) => (
+              <Dropdown
+                field={field}
+                options={formatOptions(genders)}
+                text="Gender"
+              />
             )}
           />
           <button type="submit">Submit</button>

@@ -28,6 +28,8 @@ const Home: React.FC = () => {
     const newFilters: Filters = {
       name: data.name,
       status: data.status ? data.status.value : null,
+      species: data.specie ? data.specie.value : null,
+      gender: data.gender ? data.gender.value : null,
     };
 
     setPage(1);
