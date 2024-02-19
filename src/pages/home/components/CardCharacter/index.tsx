@@ -6,10 +6,13 @@ import {
   Image,
 } from "./styles";
 import { StatusIndicator, Text } from "../../../../designSystem";
+import { useNavigate } from "react-router-dom";
 
 const CardCharacter = ({ character }: { character: Character }) => {
+  const navigate = useNavigate();
+
   return (
-    <CardContainer>
+    <CardContainer onClick={() => navigate(`/character/${character.id}`)}>
       <LeftContainer>
         <Image src={character.image} />
       </LeftContainer>

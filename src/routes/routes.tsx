@@ -6,7 +6,7 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/show" element={<ShowCharacter />} />
+      <Route path="/character/:id" element={<ShowCharacter />} />
     </Routes>
   );
 }
