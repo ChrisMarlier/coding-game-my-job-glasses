@@ -28,7 +28,12 @@ const useRickAndMortyApi = () => {
       })
       .then((res: getCharactersResponse) => res.data);
 
-  return { getCharacters };
+  const getCharacter = async (id: string) =>
+    await axios
+      .get(`https://rickandmortyapi.com/api/character/${id}`)
+      .then((res) => res.data);
+
+  return { getCharacter, getCharacters };
 };
 
 export default useRickAndMortyApi;
