@@ -5,6 +5,7 @@ const CardContainer = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 20px;
+  background-color: #202329;
 `;
 
 export default CardContainer;

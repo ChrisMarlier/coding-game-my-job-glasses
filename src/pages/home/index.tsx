@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useRickAndMortyApi from "../../hooks/useRickAndMortyApi";
-import { CardCharacter } from "./components";
+import { CardCharacter, Filters } from "./components";
 import { ButtonContainer, CardContainer } from "./styles";
 import { Button } from "../../designSystem";
 
@@ -26,6 +26,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
+      <Filters />
       <CardContainer>
         {characters.map((character) => (
           <CardCharacter key={character.id} character={character} />
