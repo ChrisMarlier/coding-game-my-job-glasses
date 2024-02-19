@@ -1,5 +1,6 @@
 import {
   CardContainer,
+  InfosContainer,
   LeftContainer,
   StatusIndicatorContainer,
   RightContainer,
@@ -17,15 +18,17 @@ const CardCharacter = ({ character }: { character: Character }) => {
         <Image src={character.image} />
       </LeftContainer>
       <RightContainer>
-        <Text color="white" bold size="1.3rem">
-          {character.name}{" "}
-        </Text>
-        <Text color="white" mt={10}>
-          Last seen in:
-        </Text>
-        <Text color="white" mt={5}>
-          {character.location.name}
-        </Text>
+        <InfosContainer>
+          <Text color="white" bold size="1.3rem">
+            {character.name}{" "}
+          </Text>
+          <Text color="white" mt={10}>
+            Last seen in:
+          </Text>
+          <Text color="white" mt={5}>
+            {character.location.name}
+          </Text>
+        </InfosContainer>
         <StatusIndicatorContainer>
           <StatusIndicator variant={character.status} text={character.status} />
         </StatusIndicatorContainer>
