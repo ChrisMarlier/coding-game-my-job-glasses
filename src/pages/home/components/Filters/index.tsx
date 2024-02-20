@@ -1,10 +1,21 @@
 import { Controller, useForm } from "react-hook-form";
 import { Button, Dropdown, InputText, Text } from "../../../../designSystem";
-import { DropdownContainer, FiltersContainer, FormContainer } from "./styles";
+import {
+  DropdownContainer,
+  FiltersContainer,
+  FormContainer,
+  ResetFitersContainer,
+} from "./styles";
 import formatDropdownOptions from "../../../../helpers/formatDropdownOptions";
 
-const Filters = ({ loadNewData }: { loadNewData: Function }) => {
-  const { control, handleSubmit } = useForm<FormFilters>();
+const Filters = ({
+  loadNewData,
+  setFilters,
+}: {
+  loadNewData: Function;
+  setFilters: Function;
+}) => {
+  const { control, handleSubmit, reset } = useForm<FormFilters>();
 
   const onSubmit = (data: FormFilters) => {
     loadNewData(data);
@@ -39,6 +50,7 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
             <Controller
               name="name"
               control={control}
+              defaultValue={""}
               render={({ field }) => <InputText field={field} text="Name" />}
             />
             <DropdownContainer>
@@ -79,7 +91,20 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
                 )}
               />
             </DropdownContainer>
-            <Button color="lightBlue" size="large" margin="20px" type="submit">
+            <ResetFitersContainer>
+              <Text
+                onClick={() => {
+                  reset();
+                  setFilters({});
+                }}
+                mt={20}
+                size="0.8rem"
+                color="lightblue"
+              >
+                Reset filters
+              </Text>
+            </ResetFitersContainer>
+            <Button color="lightBlue" size="large" margin="25px" type="submit">
               Search
             </Button>
           </form>

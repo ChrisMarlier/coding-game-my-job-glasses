@@ -44,7 +44,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <Header />
-      <Filters loadNewData={loadFromSearch} />
+      <Filters loadNewData={loadFromSearch} setFilters={setFilters} />
       <CardContainer>
         {characters.length === 0 && (
           <Text color="white" mt={10} mb={3} size="1.5rem" bold>
