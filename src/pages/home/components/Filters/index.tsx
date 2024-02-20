@@ -1,6 +1,7 @@
 import { Controller, useForm } from "react-hook-form";
 import { Button, Dropdown, InputText, Text } from "../../../../designSystem";
 import { DropdownContainer, FiltersContainer, FormContainer } from "./styles";
+import formatDropdownOptions from "../../../../helpers/formatDropdownOptions";
 
 const Filters = ({ loadNewData }: { loadNewData: Function }) => {
   const { control, handleSubmit } = useForm<FormFilters>();
@@ -27,12 +28,6 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
 
   let genders = ["Female", "Male", "Genderless", "Unknown"];
 
-  function formatOptions(options: string[]) {
-    return options.map((option) => {
-      return { value: option, label: option };
-    });
-  }
-
   return (
     <div style={{ paddingTop: "0px", width: "100%", backgroundColor: "white" }}>
       <FiltersContainer>
@@ -54,7 +49,7 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
                 render={({ field }) => (
                   <Dropdown
                     field={field}
-                    options={formatOptions(status)}
+                    options={formatDropdownOptions(status)}
                     text="Status"
                   />
                 )}
@@ -66,7 +61,7 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
                 render={({ field }) => (
                   <Dropdown
                     field={field}
-                    options={formatOptions(species)}
+                    options={formatDropdownOptions(species)}
                     text="Species"
                   />
                 )}
@@ -78,7 +73,7 @@ const Filters = ({ loadNewData }: { loadNewData: Function }) => {
                 render={({ field }) => (
                   <Dropdown
                     field={field}
-                    options={formatOptions(genders)}
+                    options={formatDropdownOptions(genders)}
                     text="Gender"
                   />
                 )}
