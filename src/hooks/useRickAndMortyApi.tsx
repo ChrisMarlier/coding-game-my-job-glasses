@@ -1,26 +1,11 @@
 import axios from "axios";
 
 const useRickAndMortyApi = () => {
-  type getCharactersResponse = {
-    data: {
-      results: Character[];
-      info: {
-        count: number;
-        next: string;
-        pages: number;
-        prev: string;
-      };
-    };
-  };
-
-  type GetCharactersParams = {
-    page?: number;
-    filters?: Filters;
-  };
+  const baseUrl = "https://rickandmortyapi.com/api";
 
   const getCharacters = async ({ page = 1, filters }: GetCharactersParams) =>
     await axios
-      .get("https://rickandmortyapi.com/api/character", {
+      .get(`${baseUrl}/character`, {
         params: {
           ...filters,
           page,
@@ -32,9 +17,7 @@ const useRickAndMortyApi = () => {
       });
 
   const getCharacter = async (id: string) =>
-    await axios
-      .get(`https://rickandmortyapi.com/api/character/${id}`)
-      .then((res) => res.data);
+    await axios.get(`${baseUrl}/character/${id}`).then((res) => res.data);
 
   return { getCharacter, getCharacters };
 };
